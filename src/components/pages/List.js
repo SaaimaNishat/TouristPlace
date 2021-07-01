@@ -29,7 +29,7 @@ function List(){
               label='Adventure'
               path='/services' />*/
               }
-              <ListCard onClick={printArrayElements} />
+              <ListCard />
             </div>
         );
 }

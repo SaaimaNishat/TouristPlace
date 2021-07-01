@@ -1,12 +1,10 @@
 import React from 'react'
 import './Crads.css'
-import { Link } from 'react-router-dom';
 import CardItems from './CardItems'
 import data from '../../sample.json'
 
 function ListCard(props)
 {
-    const list = data;
     return(
         <div className='cards'>
       <h1>Check out these EPIC Destinations!</h1>
