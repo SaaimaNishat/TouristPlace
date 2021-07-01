@@ -1,0 +1,101 @@
+[
+    {
+        "id": 1,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-2.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 2,
+        "name": "Delhi Public School",
+        "rating": 5,
+        "landmark": "Taj Mahal",
+        "location": "Delhi",
+        "type": "Lazy",
+        "src": "images/img-3.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 3,
+        "name": "RMIT",
+        "rating": 5,
+        "landmark": "BIT",
+        "location": "Bangalore central",
+        "type": "Educational",
+        "src": "images/img-4.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 4,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-5.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 5,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-6.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 6,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-7.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 7,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-8.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 8,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-9.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 9,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Educational",
+        "src": "images/img-9.jpg",
+        "address": "5th street New York, NYC America"
+    },
+    {
+        "id": 10,
+        "name": "Jain Global Campus",
+        "rating": 5,
+        "landmark": "DayaNand Sagar",
+        "location": "Kanakapura",
+        "type": "Adventure",
+        "address": "5th street New York, NYC America"
+    }
+]
