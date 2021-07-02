@@ -7,8 +7,13 @@ import { useHistory } from "react-router-dom";
 function NavBar(){
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [load, setLoad] = useState(false);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+
+    const loadBarSet = ({prop}) => setLoad(prop)
+
+
     const showButton = () => {
         if(window.innerWidth <= 960)
         {
@@ -54,16 +59,19 @@ function NavBar(){
             </li>
 
             <li className='nav-item'>
-                <Link to='/signup' className='nav-links' onClick={closeMobileMenu}>SIGNUP</Link>
+                <Link to='' className='nav-links' onClick={closeMobileMenu}>POST</Link>
             </li>
 
             <li className='nav-item'>
-                <Link to='/' className='nav-links' onClick={closeMobileMenu}>LOGIN</Link>
+                <Link to='/login' className='nav-links' onClick={closeMobileMenu}>LOGIN</Link>
             </li>
          </ul>
-            {/* {button && <Button onClick={() => {this.props.history.push('/signup')}} buttonStyle='btn--outline'>SIGN UP</Button>} */}
+            { button && <Button link='./signup' buttonStyle='btn--outline'>SIGN UP</Button>} 
          </div>
      </nav>
+     <div className="load-ba">
+         </div>
+         
      </>
     );
 }

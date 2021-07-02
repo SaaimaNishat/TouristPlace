@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Yomogi&display=swap');
+
+.row{
+    display: flex;
+    text-align: left;
+  }
+
+  .line{
+      margin: 10px;
+  }
+
+  .column-left-comment{
+    float: left;
+    text-align: left;
+    justify-content: left;
+    align-content: left;
+    width: 20%;
+    margin-left: 5px;
+  }
+
+  .column-right-comment{
+    float: auto;
+    width: 50%;
+    font-family: 'Yomogi';
+  }
+
+  .column-right-rating{
+    float: auto;
+    width: 30%;
+    font-family: 'Yomogi';
+  }
+
+  .comment-container{
+      padding-left: 10%;
+      padding-right: 10%;
+      margin-top: 40px;
+      margin-bottom: 40px;
+  }
+
+  .comment-heading{
+      padding-left: 9%;
+  }
+
+  .green-star{
+      color: green;
+  }
+
+  .red-star{
+      color: red;
+  }
+
+  .yellow-star{
+      color: rgb(190, 190, 31);
+  }

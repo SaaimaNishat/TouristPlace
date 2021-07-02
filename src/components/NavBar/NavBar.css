@@ -155,5 +155,23 @@
       color: #242424;
       transition: 250ms;
     }
+
+
   }
-  
+
+  @keyframes loading-animator {
+    0%   {width: 0%; left: 0%;}
+    25%  {width: 25%; left: 25%;}
+    50%  {left: 50%; width: 25%;}
+    75%  {left: 75%; width: 20%;}
+    100% {width: 0%; left: 100%;}
+  }
+
+  .load-bar{
+    background-color: rgb(89, 182, 174);
+    width: 20%;
+    position: fixed;
+    height: 5px;
+    z-index: 20;
+    animation: loading-animator 2s infinite;
+  }

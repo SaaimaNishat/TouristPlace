@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Details(props) {
+function Details({props}) {
     return(
         <>
-            <p>{props.name}</p>
+            <h2>Details</h2>
         </>
     );
 }

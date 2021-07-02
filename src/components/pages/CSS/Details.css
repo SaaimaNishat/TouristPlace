@@ -11,3 +11,24 @@
     text-align: justify;
     font-family: 'Montserrat';
 }
+
+.form-container{
+    background-color: #242424;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.comment{
+    height: 100px;
+    width: 1000px;
+}
+
+.select-rating{
+    width: 100%;
+    height: 25px;
+    user-select: none;
+}

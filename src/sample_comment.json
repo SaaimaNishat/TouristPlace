@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Abin",
+        "rating": 5,
+        "comment": "Personally it's the best tourist destination. Highly recommend to visit this place once."
+    },
+    {
+        "id": 2,
+        "name": "Atreya",
+        "rating": 3,
+        "comment": "This place is absolutely beautiful"
+    },
+    {
+        "id": 3,
+        "name": "Soorya",
+        "rating": 4,
+        "comment": "This place is absolutely beautiful"
+    },
+    {
+        "id": 4,
+        "name": "Udit",
+        "rating": 2,
+        "comment": "This place is absolutely beautiful"
+    },
+    {
+        "id": 5,
+        "name": "Shubham",
+        "rating": 0,
+        "comment": "This place is absolutely beautiful"
+    },
+    {
+        "id": 6,
+        "name": "Aditya",
+        "comment": "This place is absolutely beautiful"
+    }
+]

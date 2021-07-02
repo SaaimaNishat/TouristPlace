@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Yomogi&display=swap');
+
+.form-container {
+  width: 50%;
+  margin: auto;
+  box-shadow: 2px 5px 10px gray;
+  margin-top: 50px;
+}
+.form-container h1 {
+  text-align: center;
+  padding-top: 20px;
+}
+.password-requirements {
+  width: 80%;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.fulfilled-symbol {
+  display: inline;
+}
+.fulfilled-symbol:after {
+  content: 'X';
+}
+.requirement {
+  color: red;
+  font-size: 14px;
+  font-family: 'Yomogi';
+}
+.fulfilled {
+  color: green;
+}
+.fulfilled .fulfilled-symbol:after {
+  content: '\2713';
+}
+#submitBtn:disabled {
+  cursor: not-allowed;
+}
+
+.heading-signup{
+  color: #fff;
+  font-family: 'Yomogi';
+}
+
+.input-field{
+  width: 600px;
+}
+
+.signup-form{
+  width: 80%;
+}
+
+input[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
