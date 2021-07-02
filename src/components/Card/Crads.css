@@ -154,14 +154,18 @@
 
   .row{
     display: flex;
+    text-align: left;
   }
 
   .column-left{
     float: left;
-    width: 50%;
+    text-align: left;
+    justify-content: left;
+    align-content: left;
+    width: 75%;
   }
 
   .column-right{
     float: auto;
-    width: 50%;
+    width: 25%;
   }
