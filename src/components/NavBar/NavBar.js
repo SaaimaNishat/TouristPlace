@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import './NavBar.css'
+import { useHistory } from "react-router-dom";
 
 function NavBar(){
     const [click, setClick] = useState(false);
@@ -23,6 +24,14 @@ function NavBar(){
         showButton();
     }, [])
 
+    let history = useHistory();
+
+    const SignUpPage = () => {
+        
+        history.push("/signup");
+        return <Redirect to='/signup' />
+    }
+
     window.addEventListener('resize', showButton);
 
     return(
@@ -43,11 +52,16 @@ function NavBar(){
             <li className='nav-item'>
                 <Link to='/list' className='nav-links' onClick={closeMobileMenu}>LIST</Link>
             </li>
+
             <li className='nav-item'>
-                <Link to='/famous' className='nav-links' onClick={closeMobileMenu}>FAMOUS</Link>
+                <Link to='/signup' className='nav-links' onClick={closeMobileMenu}>SIGNUP</Link>
+            </li>
+
+            <li className='nav-item'>
+                <Link to='/' className='nav-links' onClick={closeMobileMenu}>LOGIN</Link>
             </li>
          </ul>
-            {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+            {/* {button && <Button onClick={() => {this.props.history.push('/signup')}} buttonStyle='btn--outline'>SIGN UP</Button>} */}
          </div>
      </nav>
      </>

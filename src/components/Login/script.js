@@ -1,5 +1,3 @@
-const checkMark = '\u2713';
-
 const lowerCaseRegex = new RegExp('^(?=.*[a-z])(?=.{1,})');
 const upperCaseRegex = new RegExp('^(?=.*[A-Z])(?=.{1,})');
 const containsNumberRegex = new RegExp('^(?=.*[0-9])(?=.{1,})')
@@ -56,3 +54,4 @@ const checkValidity = () => {
 Array.from(document.getElementsByClassName('input-listener')).forEach(input => {
   input.addEventListener('keyup', checkValidity)
 });
+

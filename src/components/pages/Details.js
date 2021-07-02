@@ -1,5 +1,4 @@
 import React from 'react'
-import ImageScroller from 'react-image-scroller'
 import CarouselContainer from '../Carousel/Carousel';
 import '../Card/Crads.css'
 import './CSS/Details.css'
@@ -9,7 +8,7 @@ import para from '../../sample_para.json'
 
 
 function Details(){
-    
+
     return(
         <>
             <CarouselContainer />
@@ -18,6 +17,26 @@ function Details(){
                 <div className="column-left">
                     <h1 className="heading">Tourism in {para.place}</h1>
                     <p className="paragraph">{para.details}</p>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p className="paragraph">{para.details1}</p>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p className="paragraph">{para.details1}</p>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p className="paragraph">{para.details2}</p>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p className="paragraph">{para.details3}</p>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p className="paragraph">{para.details4}</p>
                 </div>
                 <div className="column-right">
                     <h1 className="heading">Nearby Places</h1>
