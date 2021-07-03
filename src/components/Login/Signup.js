@@ -1,5 +1,4 @@
 import React from 'react'
-import checkValidity from './script'
 import './Signup.css'
 
 function Signup(){

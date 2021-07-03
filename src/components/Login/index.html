@@ -18,47 +18,6 @@
   </head>
   <body>
 
-    <div class="form-container">
-      <h1 style="margin-top: 40px;">SIGN UP</h1>
-
-      <div class="password-requirements">
-        <h5 class="requirements-header">Password Requirements:</h5>
-
-        <div id="numberRequirement" class="requirement">
-          <div class="fulfilled-symbol"></div>
-          Contains at least 1 number
-        </div>
-        <div id="lengthRequirement" class="requirement">
-          <div class="fulfilled-symbol"></div>
-          Contains at least 8 characters
-        </div>
-        <div id="lowerCaseRequirement" class="requirement">
-          <div class="fulfilled-symbol"></div>
-          Contains at least 1 lower case letter
-        </div>
-        <div id="upperCaseRequirement" class="requirement">
-          <div class="fulfilled-symbol"></div>
-          Contains at least 1 upper case letter
-        </div>
-        <div id="specialCharacterRequirement" class="requirement">
-          <div class="fulfilled-symbol"></div>
-          Contains at least 1 of the following characters: @, #, $, %, ^, &, *
-        </div>
-        <div id="passwordsMatchRequirement" class="requirement">
-          <div class="fulfilled-symbol"></div>
-          Passwords must match
-        </div>
-      </div>
-
-      <form class="text-center border border-light p-5" onsubmit="event.preventDefault(); console.log('SUCCESS!')">
-        <input required type="email" id="usernameInput" class="form-control mb-4" placeholder="Email">
-        <input required type="password" id="passwordInput" class="form-control mb-4 input-listener" placeholder="Password">
-        <input required type="password" id="confirmPasswordInput" class="form-control mb-4 input-listener" placeholder="Confirm Password">
-        <button disabled class="btn btn-info btn-block my-4" id="submitBtn" type="submit">Sign In</button>
-      </form>
-
-    </div>
     
-    <script src="./script.js"></script>
   </body>
 </html>

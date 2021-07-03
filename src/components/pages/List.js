@@ -1,15 +1,8 @@
 import React from 'react'
-import Cards from '../Card/Cards'
 import ListCard from '../Card/ListCard'
 
 function List(){
-        const textArray = ['hello', 'this', 'is', 'Abi']
-
-        const printArrayElements = () => {
-            textArray.map(data => {
-                console.log(data);
-            })
-        }
+        
 
         return (
             <div>

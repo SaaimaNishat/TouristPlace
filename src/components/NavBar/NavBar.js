@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import './NavBar.css'
-import { useHistory } from "react-router-dom";
 
 function NavBar(){
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
-    const [load, setLoad] = useState(false);
+    //const [load, setLoad] = useState(false);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
-    const loadBarSet = ({prop}) => setLoad(prop)
+    //const loadBarSet = ({prop}) => setLoad(prop)
 
 
     const showButton = () => {
@@ -28,14 +27,7 @@ function NavBar(){
     useEffect(() => {
         showButton();
     }, [])
-
-    let history = useHistory();
-
-    const SignUpPage = () => {
-        
-        history.push("/signup");
-        return <Redirect to='/signup' />
-    }
+    
 
     window.addEventListener('resize', showButton);
 
@@ -62,11 +54,8 @@ function NavBar(){
                 <Link to='' className='nav-links' onClick={closeMobileMenu}>POST</Link>
             </li>
 
-            <li className='nav-item'>
-                <Link to='/login' className='nav-links' onClick={closeMobileMenu}>LOGIN</Link>
-            </li>
          </ul>
-            { button && <Button link='./signup' buttonStyle='btn--outline'>SIGN UP</Button>} 
+            { button && <Button link='./login' buttonStyle='btn--outline'>LOGIN</Button>} 
          </div>
      </nav>
      <div className="load-ba">
