@@ -1,11 +1,15 @@
 import React from 'react'
+import '../pages/CSS/Details.css'
 
-function Details({props}) {
+function Detailselement({props}) {
     return(
         <>
-            <h2>Details</h2>
+            <p className="paragraph">{props}</p>
+            <br></br>
+            <br></br>
+            <br></br>
         </>
     );
 }
 
-export default Details;
+export default Detailselement;

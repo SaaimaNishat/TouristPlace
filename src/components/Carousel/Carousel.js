@@ -6,10 +6,11 @@ import './Carousel.css'
 function CarouselContainer({slides})
 {
     const [current, setCurrent] = useState(0)
-    const length = data.length
+    const length = slides.length
 
     const prevSlide = () => {
         setCurrent(current === 0 ? length - 1 : current - 1)
+        console.log(slides)
     }
 
     const nextSlide = () => {
@@ -27,11 +28,11 @@ function CarouselContainer({slides})
             <FaArrowLeft className="left-arrow"  onClick={prevSlide}/>
             <FaArrowRight className="right-arrow" onClick={nextSlide} />
             {
-                data.map((s,index) => {
+                slides.map((s,index) => {
                     return(
                         <div className={index === current ? 'slide-active' : 'slide'} key={index}>
                             {index === current && 
-                            <img src={s.src} alt="travel" className="image" />}
+                            <img src={s} alt="travel" className="image" />}
                         </div>
                     )
                 })

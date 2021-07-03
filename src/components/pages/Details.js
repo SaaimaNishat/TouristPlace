@@ -1,21 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CarouselContainer from '../Carousel/Carousel';
 import './CSS/Details.css'
 import data from '../../sample.json'
 import CardItems from '../Card/CardItems'
 import para from '../../sample_para.json'
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { Button } from '../Button/Button';
 import '../Footer/Footer.css';
 import Comment from '../Comments/Comments';
 import com from '../../sample_comment.json';
+import Detailselement from '../Details/Details';
+
+
+let getPost = (id) => {
+  return fetch('http://localhost:12345/posts/'+id)
+}
 
 
 function Details(){
     let i = 0;
     const [comment, setComment] = useState('')
+    const [details, setDetails] = useState([])
+    const [images, setImages] = useState([])
+    const [stars, setStars] = useState(0)
+    const [likes, setLikes] = useState(0)
+    const [dislikes, setDislikes] = useState(0)
+    const { id } = useParams()
+
+    // useEffect(() => {
+      
+    // })
+    
+
+    useEffect(() => {
+      getPost(id).then(res => {
+        if(res.ok)
+          return res.json()
+      }).then(res => {
+        setDetails(res.details)
+        setImages(res.images)
+        setStars(res.stars)
+        setLikes(res.likes)
+        setDislikes(res.dislikes)
+        console.log(res)
+      })
+    }, [])
+    
 
 
     const commentChangeHandler = (event) => setComment(event.target.value)
@@ -27,31 +59,21 @@ function Details(){
 
     return(
         <>
-            <CarouselContainer />
+            <CarouselContainer slides={images}/>
 
-            <div className="row">
+            <div className="row detail-container">
                 <div className="column-left">
+
+                <br></br>
+                    <br></br>
                     <h1 className="heading">Tourism in {para.place}</h1>
-                    <p className="paragraph">{para.details}</p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <p className="paragraph">{para.details1}</p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <p className="paragraph">{para.details2}</p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <p className="paragraph">{para.details3}</p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <p className="paragraph">{para.details4}</p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                    {
+                      details.map(s => (
+                        <Detailselement props={s} />
+                      ))
+                    }
+
+                    <p className="rating">Rated:&nbsp;{stars}&emsp;{likes}&emsp;<i class="fas fa-thumbs-up"></i>&emsp;{dislikes}&emsp;<i class="fas fa-thumbs-down"></i>&nbsp;</p>
 
                     <h4 className="comment-heading">COMMENTS</h4>
                     {  
@@ -63,6 +85,9 @@ function Details(){
                     <br></br>
                 </div>
                 <div className="column-right">
+
+                <br></br>
+                    <br></br>
                     <h1 className="heading">Nearby Places</h1>
                     <div className='cards__container'>
                     <div className='cards__wrapper'>
@@ -71,7 +96,7 @@ function Details(){
                                 src={s.src? s.src : "images/img-1.jpg"}
                                 text={s.name}
                                 label={s.type}
-                                path='/services'
+                                path='/details/1'
                         />))}
                     </ul>
                     </div>

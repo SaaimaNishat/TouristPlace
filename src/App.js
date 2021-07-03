@@ -19,7 +19,7 @@ function App() {
             <Route path='/' exact component={Home} />
             <Route path='/famous' exact component={Famous} />
             <Route path='/list' exact component={List} />
-            <Route path='/services' exact component={Details} />
+            <Route path='/details/:id' exact component={Details} />
             <Route path='/signup' exact component={Signup} />
             <Route path='/adventure' exact component={MapRender} />
             <Route path='/login' exact component={Login} />
