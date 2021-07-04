@@ -6,6 +6,8 @@ const app = express();
 require('dotenv/config')
 
 const postsRoutes = require('./Routes/posts');
+const commentRoutes = require('./Routes/Comment')
+const userRoute = require('./Routes/Users')
 
 
 //  MIDDLE WARE
@@ -13,12 +15,14 @@ const postsRoutes = require('./Routes/posts');
 app.use(cors())
 app.use(bodyParser.json());
 app.use('/posts', postsRoutes)
+app.use('/comment', commentRoutes)
+app.use('/user', userRoute)
 
 
 
 //  ROUTES
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.send('Welcome to Tourista')
 });
 
 
