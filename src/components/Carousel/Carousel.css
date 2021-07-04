@@ -27,9 +27,13 @@
 }
 
 .image{
-    width: 1000px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 25px;
     height: 600px;
     border-radius: 2px;
+    margin-top: 60px;
 }
 
 .slide{
@@ -41,4 +45,10 @@
     opacity: 1;
     transition-duration: 1s;
     transform: scale(1.08);
+}
+
+@media only screen and (max-width: 600px){
+    .image{
+        height: 400px;
+    }
 }

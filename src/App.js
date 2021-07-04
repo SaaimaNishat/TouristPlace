@@ -9,6 +9,7 @@ import Details from './components/pages/Details';
 import Signup from './components/Login/Signup';
 import MapRender from './components/Discover/Maps';
 import Login from './components/Login/Login';
+import PostForm from './components/Post/Post';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
             <Route path='/signup' exact component={Signup} />
             <Route path='/adventure' exact component={MapRender} />
             <Route path='/login' exact component={Login} />
+            <Route path='/details/login' exact component={Login} />
+            <Route path='/post' exact component={PostForm} />
           </Switch>
       </Router> }
     </>

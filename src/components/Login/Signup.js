@@ -1,58 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import './Signup.css'
 
+let api_url = 'http://localhost:12345/user/';
+
 function Signup(){
+    const [email, setEmail] = useState('')
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+
+    const emailChangeHandler = (e) => setEmail(e.target.value)
+    const userNameChangeHandler = (e) => setUserName(e.target.value)
+    const passwordChangeHandler = (e) => setPassword(e.target.value)
+
+    const addUser = e => {
+        e.preventDefault();
+        axios.post(api_url+ 'addUser', {"email": email, "userName": userName, "password": password}).then(
+            res => {
+                alert("User added")
+            }
+        ).catch(err => {
+            if(err.type === 'Conflict')
+                alert("User already Exist.")
+            alert("User already Exist in Database. Forgot password option will be made available soon.")
+        })
+    }
+
     return(
         <>
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-            crossorigin="anonymous"></script>
 
             <div className="form-container">
             <h1 className="heading-signup">SIGN UP</h1>
             <p className="heading-signup">Register yourself to get exclusive acces to TOURISTA</p>
 
-            {/* <div className="password-requirements">
-                <h5 className="requirements-header heading-signup">Password Requirements:</h5>
 
-                <div id="numberRequirement" className="requirement">
-                <div className="fulfilled-symbol"></div>
-                &nbsp;Contains at least 1 number
-                </div>
-                <div id="lengthRequirement" className="requirement">
-                <div className="fulfilled-symbol"></div>
-                &nbsp;Contains at least 8 characters
-                </div>
-                <div id="lowerCaseRequirement" className="requirement">
-                <div className="fulfilled-symbol"></div>
-                &nbsp;Contains at least 1 lower case letter
-                </div>
-                <div id="upperCaseRequirement" className="requirement">
-                <div className="fulfilled-symbol"></div>
-                &nbsp;Contains at least 1 upper case letter
-                </div>
-                <div id="specialCharacterRequirement" className="requirement">
-                <div className="fulfilled-symbol"></div>
-                &nbsp;Contains at least 1 of the following characters: @, #, $, %, ^, &, *
-                </div>
-                <div id="passwordsMatchRequirement" className="requirement">
-                <div className="fulfilled-symbol"></div>
-                &nbsp;Passwords must match
-                </div>
-            </div> */}
-
-            <form className="text-center signup-form" onsubmit="event.preventDefault(); console.log('SUCCESS!')">
-                <input required type="email" id="useremailInput" className="form-control mb-4" placeholder="Email" />
-                <input required type="text" id="usernameInput" className="form-control mb-4" placeholder="Name" />
-                <input required type="password" id="passwordInput" className="form-control mb-4 input-listener" placeholder="Password" />
-                <input required type="password" id="confirmPasswordInput" className="form-control mb-4 input-listener" placeholder="Confirm Password" />
-                <button className="btn btn-info btn-block my-4" id="submitBtn" type="submit">Sign Up</button>
+            <form className="text-center signup-form" onSubmit={addUser}>
+                <input onChange={emailChangeHandler} required type="email" id="useremailInput" className="form-control mb-4" placeholder="Email" />
+                <input onChange={userNameChangeHandler} required type="text" id="usernameInput" className="form-control mb-4" placeholder="Name" />
+                <input onChange={passwordChangeHandler} required type="password" id="passwordInput" className="form-control mb-4 input-listener" placeholder="Password" />
+                <button type='submit'>Submit</button>
             </form>
 
             </div>
-            <script
-         src='./script.js'></script>
         </>
     );
 }

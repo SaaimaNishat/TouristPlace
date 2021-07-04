@@ -20,7 +20,7 @@ function Comment({prop}){
             <hr className="line"></hr>
             <div className="row">
                 <div className="column-left-comment">
-                    {prop.name}
+                    {prop.userName}
                 </div>
                 <div className="column-right-comment">
                     {prop.comment}

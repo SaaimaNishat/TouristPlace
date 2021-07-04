@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Crads.css'
 import CardItems from './CardItems'
-import data from '../../sample.json'
 
 let getPost = () => {
   return fetch('http://localhost:12345/posts/')
@@ -9,8 +8,7 @@ let getPost = () => {
 
 function ListCard(props)
 {
-  const [id, setId] = useState([])
-  const [place, setPlace] = useState([])
+  
   const [places, setPlaces]= useState([])
 
   useEffect(() => {
@@ -19,8 +17,6 @@ function ListCard(props)
         return res.json()
     }).then(res => {
       setPlaces(res)
-      setId(res._id)
-      setPlace(res.place)
       console.log(res)
     })
   }, [])
@@ -32,7 +28,7 @@ function ListCard(props)
         <div className='cards__wrapper'>
           <ul className='cards__items'>
                 {places.map((s, index) => (<CardItems
-              src={"images/img-1.jpg"}
+              src={s.images[0] ? s.images[0] : "images/img-1.jpg"}
               text={s.place}
               label={s.place_type}
               path={`/details/${s._id}`}

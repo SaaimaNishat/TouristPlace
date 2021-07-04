@@ -1,46 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Crads.css';
 import CardItems from './CardItems';
 
+
+let getPost = () => {
+  return fetch('http://localhost:12345/posts/home')
+}
+
+
 function Cards() {
+
+  
+  const [places, setPlaces]= useState([])
+
+  useEffect(() => {
+    getPost().then(res => {
+      if(res.ok)
+        return res.json()
+    }).then(res => {
+      setPlaces(res)
+      console.log(res)
+    })
+  }, [])
+  
   return (
     <div className='cards'>
-      <h1>Check out these EPIC Destinations!</h1>
+      <h1>CHECK OUT THE MOST FAMOUS PLACES IN OUR SITE!</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
-            <CardItems
-              src='images/img-9.jpg'
-              text='Explore the hidden waterfall deep inside the Amazon Jungle'
-              label='Adventure'
-              path='/services'
-            />
-            <CardItems
-              src='images/img-2.jpg'
-              text='Travel through the Islands of Bali in a Private Cruise'
-              label='Luxury'
-              path='/services'
-            />
+          {places.slice(0,2).map((s, index) => (<CardItems
+              src={s.images[0] ? s.images[0] : "images/img-1.jpg"}
+              text={s.place}
+              label={s.place_type}
+              path={`/details/${s._id}`}
+            />))}
           </ul>
           <ul className='cards__items'>
-            <CardItems
-              src='images/img-3.jpg'
-              text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-              label='Mystery'
-              path='/services'
-            />
-            <CardItems
-              src='images/img-4.jpg'
-              text='Experience Football on Top of the Himilayan Mountains'
-              label='Adventure'
-              path='/products'
-            />
-            <CardItems
-              src='images/img-8.jpg'
-              text='Ride through the Sahara Desert on a guided camel tour'
-              label='Adrenaline'
-              path='/sign-up'
-            />
+          {places.slice(2,5).map((s, index) => (<CardItems
+              src={s.images.length === 0 ? "images/img-1.jpg" : s.images[0] }
+              text={s.place}
+              label={s.place_type}
+              path={`/details/${s._id}`}
+            />))}
           </ul>
         </div>
       </div>

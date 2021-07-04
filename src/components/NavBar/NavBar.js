@@ -25,9 +25,10 @@ function NavBar(){
     };
 
     useEffect(() => {
-        showButton();
+        localStorage.clear();
     }, [])
     
+
 
     window.addEventListener('resize', showButton);
 
@@ -51,12 +52,15 @@ function NavBar(){
             </li>
 
             <li className='nav-item'>
-                <Link to='' className='nav-links' onClick={closeMobileMenu}>POST</Link>
+                <Link to='/post' className='nav-links' onClick={closeMobileMenu}>POST</Link>
+            </li>
+
+            <li className='nav-item'>
+                <Link to='/login' className='nav-links' onClick={closeMobileMenu}>LOGIN</Link>
             </li>
 
          </ul>
-            { button && <Button link='./login' buttonStyle='btn--outline'>LOGIN</Button>} 
-         </div>
+            </div>
      </nav>
      <div className="load-ba">
          </div>

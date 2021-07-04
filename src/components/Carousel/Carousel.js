@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import data from '../../sample.json'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import './Carousel.css'
 

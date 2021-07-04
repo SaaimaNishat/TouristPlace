@@ -4,6 +4,10 @@ import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 
 function Footer() {
+
+  const emailHandler = () => {
+    alert("We are sorry to inform you, but this service isn't available at the moment.")
+  }
   return (
     <div className='footer-container'>
       <section className='footer-subscription'>
@@ -21,7 +25,7 @@ function Footer() {
               type='email'
               placeholder='Your Email'
             />
-            <Button buttonStyle='btn--outline'>Subscribe</Button>
+            <Button onClick={emailHandler} buttonStyle='btn--outline'>Subscribe</Button>
           </form>
         </div>
       </section>
@@ -51,10 +55,10 @@ function Footer() {
           </div>
           <div class='footer-link-items'>
             <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
+            <Link to='https://www.instagram.com/'>Instagram</Link>
+            <Link to='https://www.facebook.com/'>Facebook</Link>
+            <Link to='https://www.youtube.com/'>Youtube</Link>
+            <Link to='https://www.twitter.com/'>Twitter</Link>
           </div>
         </div>
       </div>

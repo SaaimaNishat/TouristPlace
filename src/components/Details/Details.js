@@ -6,8 +6,6 @@ function Detailselement({props}) {
         <>
             <p className="paragraph">{props}</p>
             <br></br>
-            <br></br>
-            <br></br>
         </>
     );
 }

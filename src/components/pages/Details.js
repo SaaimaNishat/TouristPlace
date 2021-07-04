@@ -1,33 +1,63 @@
 import React, { useEffect, useState } from 'react'
 import CarouselContainer from '../Carousel/Carousel';
 import './CSS/Details.css'
-import data from '../../sample.json'
 import CardItems from '../Card/CardItems'
-import para from '../../sample_para.json'
 
 import { Link, useParams } from 'react-router-dom';
 
 import { Button } from '../Button/Button';
 import '../Footer/Footer.css';
 import Comment from '../Comments/Comments';
-import com from '../../sample_comment.json';
 import Detailselement from '../Details/Details';
+import axios from 'axios'
+
+
+let api_url = 'http://localhost:12345/';
 
 
 let getPost = (id) => {
-  return fetch('http://localhost:12345/posts/'+id)
+  return fetch(api_url+ 'posts/'+id)
 }
+
+let gettenPost = () => {
+  return fetch(api_url+'posts/home')
+}
+
+let getComment = (id) => {
+  return fetch(api_url+'comment/'+id)
+}
+
+
 
 
 function Details(){
     let i = 0;
-    const [comment, setComment] = useState('')
+    const [comments, setComments] = useState([])
+    const [rating, setRating] = useState(1)
+
+    const [comment, setComment] = useState([])
+
+    const [place, setPlace] = useState('')
     const [details, setDetails] = useState([])
     const [images, setImages] = useState([])
     const [stars, setStars] = useState(0)
     const [likes, setLikes] = useState(0)
     const [dislikes, setDislikes] = useState(0)
     const { id } = useParams()
+    const [places, setPlaces]= useState([])
+
+
+
+  useEffect(() => {
+    gettenPost().then(res => {
+      if(res.ok)
+        return res.json()
+    }).then(res => {
+      setPlaces(res)
+      console.log(res)
+    })
+  }, [])
+  
 
     // useEffect(() => {
       
@@ -43,7 +73,20 @@ function Details(){
         setImages(res.images)
         setStars(res.stars)
         setLikes(res.likes)
+        setPlace(res.place)
         setDislikes(res.dislikes)
+        console.log(res)
+      })
+    }, [])
+
+
+
+    useEffect(() => {
+      getComment(id).then(res => {
+        if(res.ok)
+          return res.json()
+      }).then(res => {
+        setComments(res)
         console.log(res)
       })
     }, [])
@@ -51,10 +94,43 @@ function Details(){
 
 
     const commentChangeHandler = (event) => setComment(event.target.value)
+    const ratingChangeHandler = (event) => setRating(event.target.value)
 
 
     const postComment = () => {
-        localStorage.setItem("comment", comment);
+      if(localStorage.getItem('loggedin') === 'true')
+      {
+        
+        axios.post(api_url+ 'comment', {"comment": comment, "rating": rating, "userName": localStorage.getItem('user'), "postId": id}).then(
+          res => {
+              window.location.reload();
+          }
+        ).catch(err => {
+            alert("Server is under maintainance.")
+        })
+      }
+      else
+      {
+        alert('Please login first to get write acces to this site.')
+      }
+      
+    }
+
+
+    const likePost = () => {
+      axios.patch(api_url + 'posts/like/' + id, {"likes" : likes + 1}).then(
+        res => {
+          window.location.reload();
+        }
+      )
+    }
+
+    const dislikePost = () => {
+      axios.patch(api_url + 'posts/dislike/' + id, {"dislikes" : dislikes + 1}).then(
+        res => {
+          window.location.reload();
+        }
+      )
     }
 
     return(
@@ -66,37 +142,39 @@ function Details(){
 
                 <br></br>
                     <br></br>
-                    <h1 className="heading">Tourism in {para.place}</h1>
+                    <h1 className="heading">{place}</h1>
                     {
                       details.map(s => (
                         <Detailselement props={s} />
                       ))
                     }
 
-                    <p className="rating">Rated:&nbsp;{stars}&emsp;{likes}&emsp;<i class="fas fa-thumbs-up"></i>&emsp;{dislikes}&emsp;<i class="fas fa-thumbs-down"></i>&nbsp;</p>
+                    <p className="rating"> Rated:&nbsp; {stars} &emsp; {likes} &emsp; 
+                      <button onClick={likePost} className='like-dislike'><i class="fas fa-thumbs-up"></i></button> &emsp; {dislikes} &emsp; 
+                      <button onClick={dislikePost} className="like-dislike"><i class="fas fa-thumbs-down"></i></button>&nbsp;
+                    </p>
 
                     <h4 className="comment-heading">COMMENTS</h4>
                     {  
-                        com.slice(0,5).map(s => (
+                        comments.map(s => (
                             <Comment prop={s}/>
                         ))
                     }
                     <br></br>
                     <br></br>
                 </div>
-                <div className="column-right">
+                <div className="column-right hide">
 
                 <br></br>
                     <br></br>
-                    <h1 className="heading">Nearby Places</h1>
+                    <h1 className="heading">Other Places</h1>
                     <div className='cards__container'>
                     <div className='cards__wrapper'>
                     <ul className='cards__items'>
-                            {data.map(s => (<CardItems
-                                src={s.src? s.src : "images/img-1.jpg"}
-                                text={s.name}
-                                label={s.type}
-                                path='/details/1'
+                            {places.map(s => (<CardItems
+                                src={s.images[0] ? s.images[0] : "images/img-1.jpg"}
+                                label={s.place_type}
+                                path={`${s._id}`}
                         />))}
                     </ul>
                     </div>
@@ -116,35 +194,24 @@ function Details(){
         <div className='input-areas'>
           <form>
             <input
-              className='footer-input comment'
+              className='comment'
               name='comment'
               type='comment'
               placeholder='Comment Here'
               onChange={commentChangeHandler}
             />
             <br></br>
-            <select className="select-rating" id="rate" name="rating">
-                <option value="0">No Rating</option>
-                <option value="1">1 STAR</option>
-                <option value="2">2 STAR</option>
-                <option value="3">3 STAR</option>
-                <option value="4">4 STAR</option>
-                <option value="5">5 STAR</option>
-            </select>
-            <br></br>
+            <select id='rate' name='rating' onChange={ratingChangeHandler}>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
 
             <br></br>
             <Button buttonStyle='btn--outline' onClick={postComment}>Comment</Button>
           </form>
-          <br></br>
-          <Button>
-            <i class="fas fa-thumbs-up"></i>
-          </Button>
-
-          <br></br>
-          <Button>
-          <i class="fas fa-thumbs-down"></i>
-          </Button>
         </div>
       </section>
       
