@@ -37,4 +37,6 @@ mongoose.connect(
 
 //  app listening
 
-app.listen(12345);
+const port = (process.env.PORT || 5000); 
+
+app.listen(port);
