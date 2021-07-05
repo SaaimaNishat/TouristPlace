@@ -3,6 +3,9 @@ import 'firebase/storage'
 require('dotenv/config')
 
 
+export const api_url = (process.env.REACT_APP_BASE_URL)
+
+
 export const app = firebase.initializeApp({
     "projectId": "travelista-60d21",
     "appId": "1:465154725251:web:d94ffdd6f8e4eb9b5152b6",

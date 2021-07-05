@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-let api_url = 'http://localhost:12345/user/';
+import { api_url } from '../../base'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -17,7 +17,7 @@ function Login() {
 
         localStorage.clear();
         console.log(email, password)
-        axios.post(api_url + 'login', {"email": email, "password": password}).then(
+        axios.post(api_url + 'user/login', {"email": email, "password": password}).then(
             res => {
                 alert("You are now logged in")
                 localStorage.setItem('loggedin', true);

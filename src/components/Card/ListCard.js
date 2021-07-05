@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './Crads.css'
 import CardItems from './CardItems'
 
+import { api_url } from '../../base'
+
 let getPost = () => {
-  return fetch('http://localhost:12345/posts/')
+  return fetch(api_url + 'posts/')
 }
 
 function ListCard(props)

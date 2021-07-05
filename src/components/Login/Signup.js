@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import './Signup.css'
 
-let api_url = 'http://localhost:12345/user/';
+import { api_url } from '../../base'
 
 function Signup(){
     const [email, setEmail] = useState('')
@@ -15,7 +15,7 @@ function Signup(){
 
     const addUser = e => {
         e.preventDefault();
-        axios.post(api_url+ 'addUser', {"email": email, "userName": userName, "password": password}).then(
+        axios.post(api_url+ 'user/addUser', {"email": email, "userName": userName, "password": password}).then(
             res => {
                 alert("User added")
             }

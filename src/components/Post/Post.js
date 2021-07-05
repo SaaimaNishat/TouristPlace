@@ -3,6 +3,8 @@ import axios from 'axios'
 import '../Login/Signup.css'
 import './Post.css'
 import {app} from '../../base'
+import { api_url } from '../../base'
+
 
 class PostForm extends Component{
     static images = '';
@@ -52,7 +54,7 @@ class PostForm extends Component{
                 return;
             }
             alert('Please Wait while we Upload!')
-            axios.post('http://localhost:12345/posts', this.state).then(
+            axios.post(api_url+'posts', this.state).then(
                 res => {
                     alert('post updated')
                 }

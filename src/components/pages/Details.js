@@ -12,7 +12,7 @@ import Detailselement from '../Details/Details';
 import axios from 'axios'
 
 
-let api_url = 'http://localhost:12345/';
+import { api_url } from '../../base'
 
 
 let getPost = (id) => {
