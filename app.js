@@ -14,14 +14,14 @@ const userRoute = require('./Routes/Users')
 
 app.use(cors())
 app.use(bodyParser.json());
-app.use('/posts', postsRoutes)
-app.use('/comment', commentRoutes)
-app.use('/user', userRoute)
+app.use('/api/posts', postsRoutes)
+app.use('/api/comment', commentRoutes)
+app.use('/api/user', userRoute)
 
 
 
 //  ROUTES
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     res.send('Welcome to Tourista')
 });
 
@@ -30,9 +30,9 @@ app.get('/', (req, res) => {
 
 mongoose.connect(
     process.env.DB_CONNECTION,   
-    { useNewUrlParser: true },
+    { useNewUrlParser: true,  useUnifiedTopology: true },
     () => 
-        console.log("Connected to DB")
+        console.log(process.env.DB_CONNECTION)
 );
 
 //  app listening
