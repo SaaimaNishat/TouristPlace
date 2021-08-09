@@ -4,6 +4,7 @@ import './NavBar.css'
 
 function NavBar(){
     const [click, setClick] = useState(false);
+    const [user, setUser] = useState('LOGIN');
     
     //const [load, setLoad] = useState(false);
     const handleClick = () => setClick(!click);
@@ -16,9 +17,8 @@ function NavBar(){
 
     useEffect(() => {
         localStorage.clear();
-    }, [])
-    
-
+        setUser('LOGIN')
+    }, [])    
 
 
     return(
@@ -45,14 +45,12 @@ function NavBar(){
             </li>
 
             <li className='nav-item'>
-                <Link to='/login' className='nav-links' onClick={closeMobileMenu}>LOGIN</Link>
+                <Link to='/login' className='nav-links' onClick={closeMobileMenu}>{user}</Link>
             </li>
 
          </ul>
             </div>
      </nav>
-     <div className="load-ba">
-         </div>
          
      </>
     );

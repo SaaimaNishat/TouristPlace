@@ -3,7 +3,8 @@ import 'firebase/storage'
 require('dotenv/config')
 
 
-export const api_url = ("https://pacific-crag-45399.herokuapp.com/api/")
+//export const api_url = ("https://pacific-crag-45399.herokuapp.com/api/")
+export const api_url = ("http://localhost:3001/api/")
 
 
 export const app = firebase.initializeApp({

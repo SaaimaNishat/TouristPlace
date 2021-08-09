@@ -3,6 +3,8 @@
 
 .heading{
     margin: 20px;
+    margin-bottom: 40px;
+    font-size: 6vh;
 }
 
 .paragraph{
@@ -40,10 +42,19 @@
 
 .rating{
     float: right;
+    display: table;
+    align-content: center;
+    position: relative;
+    top: 10px;
+    left: 10px;
     padding-right: 10%;
 }
 
-@media only screen and (max-width: 600px){
+.fa-thumbs-down{
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 960px){
     .hide{
         display: none;
     }
@@ -72,5 +83,41 @@
     outline: none;
     border: none;
 }
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0);
+      opacity: 0.5;
+    }
+    25% {
+        transform: rotate(25deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: rotate(0deg);
+        opacity: 0.5;
+    }
+    75% {
+        transform: rotate(-25deg);
+        opacity: 0.5;
+    }
+    100% {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+.like-dislike:active{
+    color:grey;
+    animation-name: rotate;
+    animation-duration: 0.2s;
+
+}
+
+.like-dislike:hover{
+    color: grey;
+}
+
+
 
 

@@ -36,11 +36,13 @@ function Details(){
     const [rating, setRating] = useState(1)
 
     const [comment, setComment] = useState([])
+    const [postedComment, setPostedComment] = useState({})
+    const [newComment, setNewComment] = useState(false)
 
     const [place, setPlace] = useState('')
     const [details, setDetails] = useState([])
     const [images, setImages] = useState([])
-    const [stars, setStars] = useState(0)
+    //const [stars, setStars] = useState(0)
     const [likes, setLikes] = useState(0)
     const [dislikes, setDislikes] = useState(0)
     const { id } = useParams()
@@ -62,7 +64,9 @@ function Details(){
     // useEffect(() => {
       
     // })
-    
+
+
+
 
     useEffect(() => {
       getPost(id).then(res => {
@@ -71,25 +75,22 @@ function Details(){
       }).then(res => {
         setDetails(res.details)
         setImages(res.images)
-        setStars(res.stars)
+        //setStars(res.stars)
         setLikes(res.likes)
         setPlace(res.place)
         setDislikes(res.dislikes)
         console.log(res)
-      })
-    }, [])
+      });
 
-
-
-    useEffect(() => {
       getComment(id).then(res => {
         if(res.ok)
           return res.json()
       }).then(res => {
         setComments(res)
         console.log(res)
-      })
-    }, [])
+      });
+      window.scrollTo(0, 0);
+    }, []);
     
 
 
@@ -97,13 +98,33 @@ function Details(){
     const ratingChangeHandler = (event) => setRating(event.target.value)
 
 
+    function conditional_comment_render(){
+      if(newComment === true)
+      {
+        return(
+          <Comment prop={postedComment} />
+        );
+      }
+    }
+
+
     const postComment = () => {
+      if(newComment === true)
+      {
+        alert("You can post only one comment after a login, please logout and login to post a new comment");
+        return;
+      }
       if(localStorage.getItem('loggedin') === 'true')
       {
         
         axios.post(api_url+ 'comment', {"comment": comment, "rating": rating, "userName": localStorage.getItem('user'), "postId": id}).then(
           res => {
-              window.location.reload();
+              setPostedComment({
+                "userName": localStorage.getItem('user'),
+                "comment": comment,
+                "rating": rating
+              })
+              setNewComment(true)
           }
         ).catch(err => {
             alert("Server is under maintainance.")
@@ -120,7 +141,7 @@ function Details(){
     const likePost = () => {
       axios.patch(api_url + 'posts/like/' + id, {"likes" : likes + 1}).then(
         res => {
-          window.location.reload();
+          setLikes(likes + 1);
         }
       )
     }
@@ -128,9 +149,13 @@ function Details(){
     const dislikePost = () => {
       axios.patch(api_url + 'posts/dislike/' + id, {"dislikes" : dislikes + 1}).then(
         res => {
-          window.location.reload();
+          setDislikes(dislikes + 1);
         }
       )
+    }
+
+    const changeView = (e) => {
+      alert(e.target.value)
     }
 
     return(
@@ -149,12 +174,15 @@ function Details(){
                       ))
                     }
 
-                    <p className="rating"> Rated:&nbsp; {stars} &emsp; {likes} &emsp; 
-                      <button onClick={likePost} className='like-dislike'><i class="fas fa-thumbs-up"></i></button> &emsp; {dislikes} &emsp; 
-                      <button onClick={dislikePost} className="like-dislike"><i class="fas fa-thumbs-down"></i></button>&nbsp;
+                    <p className="rating">  &emsp; {likes} &emsp; 
+                      <button onClick={likePost} className='like-dislike'><i class="fas fa-thumbs-up fa-2x"></i></button> &emsp; {dislikes} &emsp; 
+                      <button onClick={dislikePost} className="like-dislike"><i class="fas fa-thumbs-down fa-2x"></i></button>&nbsp;
                     </p>
 
                     <h4 className="comment-heading">COMMENTS</h4>
+                    {
+                      conditional_comment_render()
+                    }
                     {  
                         comments.map(s => (
                             <Comment prop={s}/>
@@ -170,11 +198,11 @@ function Details(){
                     <h1 className="heading">Other Places</h1>
                     <div className='cards__container'>
                     <div className='cards__wrapper'>
-                    <ul className='cards__items'>
-                            {places.map(s => (<CardItems
+                    <ul className='cards__items' onClick={changeView}>
+                            {places.map(s => (<CardItems className="local_card_container" 
                                 src={s.images[0] ? s.images[0] : "images/img-1.jpg"}
                                 label={s.place_type}
-                                path={`${s._id}`}
+                                Path={`${s._id}`}
                         />))}
                     </ul>
                     </div>
@@ -225,46 +253,16 @@ function Details(){
           </div>
           <small class='website-rights'>TRAVELISTA © 2020</small>
           <div class='social-icons'>
-            <Link
-              class='social-icon-link facebook'
-              to='/'
-              target='_blank'
-              aria-label='Facebook'
-            >
-              <i class='fab fa-facebook-f' />
-            </Link>
-            <Link
-              class='social-icon-link instagram'
-              to='/'
-              target='_blank'
-              aria-label='Instagram'
-            >
-              <i class='fab fa-instagram' />
-            </Link>
-            <Link
-              class='social-icon-link youtube'
-              to='/'
-              target='_blank'
-              aria-label='Youtube'
-            >
-              <i class='fab fa-youtube' />
-            </Link>
-            <Link
-              class='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='Twitter'
-            >
-              <i class='fab fa-twitter' />
-            </Link>
-            <Link
-              class='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='LinkedIn'
-            >
-              <i class='fab fa-linkedin' />
-            </Link>
+            <a class='social-icon-link facebook' href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i class='fab fa-facebook-f' /></a>
+            
+            <a class='social-icon-link instagram' href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i class='fab fa-instagram' /></a>
+            
+            <a class='social-icon-link youtube' href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i class='fab fa-youtube' /></a>
+            
+            <a class='social-icon-link twitter' href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i class='fab fa-twitter' /></a>
+            
+            <a class='social-icon-link linkedin' href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i class='fab fa-linkedin' /></a>
+            
           </div>
         </div>
       </section>

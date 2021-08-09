@@ -27,7 +27,6 @@ function Comment({prop}){
                 </div>
 
                 <div className="column-right-rating">
-                RATING : &nbsp;
                 {
                     renderStar(prop.rating)   
                 }

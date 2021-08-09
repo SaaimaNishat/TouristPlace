@@ -21,6 +21,8 @@
   .column-right-comment{
     float: auto;
     width: 50%;
+
+    padding-right: 30px;
     font-family: 'Yomogi';
   }
 
@@ -33,7 +35,7 @@
   .comment-container{
       padding-left: 10%;
       padding-right: 10%;
-      margin-top: 40px;
+      margin-top: 60px;
       margin-bottom: 40px;
   }
 
